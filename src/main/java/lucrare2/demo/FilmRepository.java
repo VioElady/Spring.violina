@@ -1,25 +1,40 @@
 package lucrare2.demo;
 
-import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public class FilmRepository {
-    List<String> films = new ArrayList<>();
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
-    public FilmRepository() {
-        films.add("Harry Potter ");
-        films.add("Hatiko");
-        films.add("Holywood");
-        films.add("Tomb Raider");
-        films.add("Healer");
+    public List<Film> findAll() {
+        return jdbcTemplate.query("SELECT*FROM FILM",
+                (response, rowNumber) ->
+                        new Film(response.getInt("film_id"),
+                                response.getString("title"),
+                                response.getString("description"),
+                                response.getInt("release_year"),
+                                response.getInt("rental_duration"),
+                                response.getInt("rating"),
+                                response.getInt("replacement_cost"),
+                                response.getInt("last_update")));
     }
 
-    public List<String> getFilms(){
-        return films;
+
+    public void save (Film film){
+        jdbcTemplate.update(
+                "INSERT INTO FILM(film_id, title, description, release_year, rental_duration, rating," +
+                        " replacement_cost, last_update) VALUES (?,?,?,?,?,?,?,?)",
+                film.getFilm_id(),film.getTitle(),film.getDescription(),film.getLast_update(),film.getRating(),
+        film.getRelease_year(),film.getRental_duration(),film.getReplacement_cost());
     }
 
-    public void addFilms(String name){
-        films.add(name);
+    public void delete(String name){
+        jdbcTemplate.update("DELETE FROM FILM WHERE title=?",name);
     }
-
 }
