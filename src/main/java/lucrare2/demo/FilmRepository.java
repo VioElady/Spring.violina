@@ -15,13 +15,13 @@ public class FilmRepository {
     public List<Film> findAll() {
         return jdbcTemplate.query("SELECT*FROM FILM",
                 (response, rowNumber) ->
-                        new Film(response.getInt("film_id"),
+                        new Film(response.getString("film_id"),
                                 response.getString("title"),
                                 response.getString("description"),
                                 response.getInt("release_year"),
                                 response.getInt("rental_duration"),
                                 response.getInt("rating"),
-                                response.getInt("replacement_cost"),
+                                response.getString("replacement_cost"),
                                 response.getInt("last_update")));
     }
 

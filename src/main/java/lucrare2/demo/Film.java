@@ -1,17 +1,17 @@
 package lucrare2.demo;
 
 public class Film {
-     private int film_id;
+     private String film_id;
      private String title;
      private String description;
      private int release_year;
      private int rental_duration;
      private int rating;
-     private int replacement_cost;
+     private String replacement_cost;
      private int last_update;
 
-    public Film(int film_id, String title, String description, int release_year, 
-                int rental_duration, int rating, int replacement_cost, int last_update) {
+    public Film(String film_id, String title, String description, int release_year,
+                int rental_duration, int rating, String replacement_cost, int last_update) {
         this.film_id=film_id;
         this.title=title;
         this.description=description;
@@ -22,7 +22,7 @@ public class Film {
         this.last_update=last_update;
     }
 
-    public int getFilm_id() {
+    public String getFilm_id() {
         return film_id;
     }
 
@@ -50,7 +50,7 @@ public class Film {
         return rental_duration;
     }
 
-    public int getReplacement_cost() {
+    public String getReplacement_cost() {
         return replacement_cost;
     }
 

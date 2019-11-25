@@ -13,7 +13,7 @@ public class FilmWebService {
     @Autowired
     private FilmRepository filmRepository;
 
-    @GetMapping("/1")
+    @GetMapping
     public List<Film> findAll() {
         return filmRepository.findAll();
     }
