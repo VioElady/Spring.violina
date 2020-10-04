@@ -32,10 +32,6 @@ public class AlbumWebService {
         albumRepository.update(album,albumName);
     }
 
-    @DeleteMapping("album/{albumName}")
-    public void delete (@PathVariable String albumName ){
-        albumRepository.delete(albumName);
 
-    }
 
 }

@@ -30,9 +30,6 @@ public class AlbumRepository {
                 album.getAlbumId(), album.getAlbumName(), album.getNumberTrack(), album.getRatingAlbum());
     }
 
-    public void delete(String albumName){
-        jdbcTemplate.update("DELETE FROM ALBUM WHERE album_name=?",albumName);
-    }
 
     public void update(Album album, String albumName){
         jdbcTemplate.update(
@@ -53,5 +50,7 @@ public class AlbumRepository {
                         reponse.getString("album_name"),
                         reponse.getInt("number_track"),
                         reponse.getFloat("rating_album")));
+
     }
+
 }
